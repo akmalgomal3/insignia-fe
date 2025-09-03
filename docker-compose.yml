@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  # Frontend service
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_TOKEN=very-secret-token
+    networks:
+      - insignia-network
+
+networks:
+  insignia-network:
+    driver: bridge
