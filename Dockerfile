@@ -1,17 +1,8 @@
 # Step 1: Build the application
 FROM node:18-alpine AS builder
 
-# Set build-time arguments with production defaults
-ARG NEXT_PUBLIC_API_BASE_URL=https://insignia-be-331739783852.asia-southeast2.run.app
-ARG NEXT_PUBLIC_API_TOKEN=very-secret-token
-
-# Set environment variables from arguments
-ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
-ENV NEXT_PUBLIC_API_TOKEN=$NEXT_PUBLIC_API_TOKEN
-
-# Debug: Print environment variables
-RUN echo "NEXT_PUBLIC_API_BASE_URL: $NEXT_PUBLIC_API_BASE_URL"
-RUN echo "NEXT_PUBLIC_API_TOKEN: $NEXT_PUBLIC_API_TOKEN"
+ENV NEXT_PUBLIC_API_BASE_URL='https://insignia-be-331739783852.asia-southeast2.run.app'
+ENV NEXT_PUBLIC_API_TOKEN='very-secret-token'
 
 # Set working directory
 WORKDIR /app
