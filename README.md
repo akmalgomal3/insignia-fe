@@ -2,6 +2,10 @@
 
 A modern, responsive frontend application for the Insignia Task Scheduler built with Next.js, TypeScript, and Tailwind CSS.
 
+- Public URL (deployed on Google Cloud Run): https://insignia-fe-331739783852.asia-southeast2.run.app/dashboard
+
+List of question QWEN CLI: https://docs.google.com/document/d/1CpGg2dPutTyVjCmyFmn2e30oFiV6Mq56XJkjqHgKSLw/edit?usp=sharing
+
 ## Features
 
 - Dashboard with summary cards and execution charts
@@ -63,26 +67,39 @@ A modern, responsive frontend application for the Insignia Task Scheduler built 
 
 1. Ensure Docker is installed on your system.
 
-2. Build and run the application with Docker:
+2. **Important for Production Deployment**: If you want to deploy to production or use a different backend URL, you need to modify the Dockerfile environment variables before building:
+   ```dockerfile
+   ENV NEXT_PUBLIC_API_BASE_URL='https://insignia-be-331739783852.asia-southeast2.run.app'
+   ENV NEXT_PUBLIC_API_TOKEN='very-secret-token'
+   ```
+
+3. Build and run the application with Docker:
    ```bash
    docker build -t insignia-fe .
    docker run -p 3000:3000 -e NEXT_PUBLIC_API_BASE_URL=http://host.docker.internal:8000 -e NEXT_PUBLIC_API_TOKEN=your-super-secret-token-here insignia-fe
    ```
 
-3. Access the application at [http://localhost:3000](http://localhost:3000).
+4. Access the application at [http://localhost:3000](http://localhost:3000).
 
 ### Docker Compose Setup
 
 1. Ensure Docker Compose is installed on your system.
 
-2. Run the application with Docker Compose:
+2. **Important for Production Deployment**: If you want to deploy to production or use a different backend URL, update the `docker-compose.yml` environment section:
+   ```yaml
+   environment:
+     NEXT_PUBLIC_API_BASE_URL: https://insignia-be-331739783852.asia-southeast2.run.app
+     NEXT_PUBLIC_API_TOKEN: very-secret-token
+   ```
+
+3. Run the application with Docker Compose:
    ```bash
    docker-compose up
    ```
 
-3. Access the application at [http://localhost:3000](http://localhost:3000).
+4. Access the application at [http://localhost:3000](http://localhost:3000).
 
-4. To stop the service:
+5. To stop the service:
    ```bash
    docker-compose down
    ```
